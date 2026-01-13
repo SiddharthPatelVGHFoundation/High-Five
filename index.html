@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>High Five Form</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
+    .high-five-form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h3 { text-align: center; color: #0078d4; }
+    label { display: block; margin-top: 12px; font-weight: bold; }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    textarea { resize: vertical; height: 80px; }
+    #charCount {
+      text-align: right;
+      font-size: 0.85em;
+      color: #666;
+      margin-top: 4px;
+    }
+    button {
+      margin-top: 16px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button[type="submit"] { background: #0078d4; color: white; }
+    button[type="button"] { background: #e0e0e0; margin-left: 10px; }
+  </style>
+</head>
+<body>
+  <div class="high-five-form">
+    <h3>Give a high five</h3>
+    <form id="highFiveForm">
+      <label>Who do you want to give a high five to?</label>
+      <input type="text" placeholder="Their name or team name" required>
+
+      <label>Email address (only one)</label>
+      <input type="email" placeholder="user@company.com" required>
+
+      <label>Tell them why they deserve a high five!</label>
+      <textarea id="reason" placeholder="Add a short description" maxlength="255"></textarea>
+      <div id="charCount">255 characters remaining</div>
+
+      <button type="submit">Submit</button>
+      <button type="button" onclick="document.getElementById('highFiveForm').reset()">Cancel</button>
+    </form>
+  </div>
+
+  <script>
+    const textarea = document.getElementById('reason');
+    const charCount = document.getElementById('charCount');
+
+    textarea.addEventListener('input', () => {
+      const remaining = 255 - textarea.value.length;
+      charCount.textContent = `${remaining} characters remaining`;
+    });
+
+    document.getElementById('highFiveForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you for your High Five! (Form submission would be handled here.)');
+      // In real use, send data to your backend API
+    });
+  </script>
+</body>
+</html>
